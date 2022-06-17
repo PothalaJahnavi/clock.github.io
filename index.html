@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>DIGITAL CLOCK</h1>
+  <!-- to display date -->
+  <div id="date">
+    <div id="today">00</div>
+    <div id="month">Month</div>
+      <div id="day">DAY</div>
+      <div id="year">Year</div>
+  </div>
+  <!-- for clock -->
+  <div class="outer">
+  <div class="container">
+    <div class="clock">
+      <div class="circle" id="sec" style="--clr:#5FD068;" ><i></i> </div>
+      <div class="circle circle2" id="min" style="--clr:#F4E06D;" ><i></i> </div>
+      <div class="circle circle3" id="hrs" style="--clr:#F15412;" ><i></i> </div>
+      <span style="--i:1"><b>1</b></span>
+      <span style="--i:2"><b>2</b></span>
+      <span style="--i:3"><b>3</b></span>
+      <span style="--i:4"><b>4</b></span>
+      <span style="--i:5"><b>5</b></span>
+      <span style="--i:6"><b>6</b></span>
+      <span style="--i:7"><b>7</b></span>
+      <span style="--i:8"><b>8</b></span>
+      <span style="--i:9"><b>9</b></span>
+      <span style="--i:10"><b>10</b></span>
+      <span style="--i:11"><b>11</b></span>
+      <span style="--i:12"><b>12</b></span>
+    </div>
+<div id="time">
+  <div id="hours" style="--clr:#F15412;"> 00 </div>
+  <div id="minutes"style="--clr:#F4E06D;"> 00</div>
+  <div id="seconds"style="--clr:#5FD068;"> 00 </div>
+  <div id="am_pm">AM</div>
+</div>
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+  let hrs=document.querySelector('#hrs');
+  let min=document.querySelector('#min');
+  let sec=document.querySelector('#sec');
+   setInterval(()=>{
+     let day= new Date();
+     let hr=day.getHours() * 30;
+     let mi=day.getMinutes() * 6;
+     let se=day.getSeconds() * 6;
+
+     hrs.style.transform=`rotateZ(${hr+(mi/12)}deg)`;
+     min.style.transform=`rotateZ(${mi}deg)`;
+     sec.style.transform=`rotateZ(${se}deg)`;
+// to display
+
+     let hours=document.getElementById('hours');
+     let minutes=document.getElementById('minutes');
+     let seconds=document.getElementById('seconds');
+      let am_pm=document.getElementById('am_pm');
+
+        let h=new Date().getHours();
+        let m=new Date().getMinutes();
+        let s=new Date().getSeconds();
+ // to set am and pm
+    let am=h>=12?"PM":"AM";
+        // to add 0 before time
+        h=(h<10)?"0"+h:h;
+          m=(m<10)?"0"+m:m;
+            s=(s<10)?"0"+s:s;
+        hours.innerHTML=h;
+        minutes.innerHTML=m;
+        seconds.innerHTML=s;
+       am_pm.innerHTML=am;
+   })
+// to get date
+let day=document.querySelector('#day');
+let today=document.querySelector('#today');
+let month=document.querySelector('#month');
+let year=document.querySelector('#year');
+
+let dy=new Date().getDay();
+let da=new Date().getDate();
+let mon=new Date().getMonth();
+let ye=new Date().getFullYear();
+
+day.innerHTML=dy;
+today.innerHTML=da;
+month.innerHTML=mon;
+year.innerHTML=ye;
+
+var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var week=["Sun","Mon","Tue","Wed","Thurs","Fri","Sat"];
+var ids=["today","month","day","year"];
+var values=[week[dy],da,months[mon],ye];
+for(var i=0;i<ids.length;i++)
+document.getElementById(ids[i]).firstChild.nodeValue=values[i];
+
+
+</script>
+</html>
